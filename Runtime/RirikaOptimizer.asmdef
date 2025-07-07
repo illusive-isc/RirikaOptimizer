@@ -1,0 +1,18 @@
+{
+    "name": "jp.illusive_isc.RirikaOptimizer",
+    "rootNamespace": "jp.illusive_isc.RirikaOptimizer",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "VRC.Dynamics.dll",
+        "VRCSDK3A.dll",
+        "VRCSDKBase.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
