@@ -103,7 +103,6 @@ namespace jp.illusive_isc.RirikaOptimizer
             bool accessoryFlg4
         )
         {
-
             // DestroyObj(descriptor.transform.Find("Armature/Hips/Spine/Chest/Neck/Head/acce_wing_transform"));
             // DestroyObj(descriptor.transform.Find("Armature/Hips/Spine/Chest/Neck/Head/earring_root"));
             if (descriptor.transform.Find("cloth_Accessories") is Transform accessoryObj1)
