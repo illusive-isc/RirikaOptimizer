@@ -14,6 +14,7 @@ namespace jp.illusive_isc.RirikaOptimizer
     {
         VRCAvatarDescriptor descriptor;
         AnimatorController animator;
+        bool clothFlg9;
         private static readonly List<string> MenuParameters = new()
         {
             "Ririka_Outer",
@@ -26,11 +27,13 @@ namespace jp.illusive_isc.RirikaOptimizer
 
         public IllRirikaParamCloth Initialize(
             VRCAvatarDescriptor descriptor,
-            AnimatorController animator
+            AnimatorController animator,
+            bool clothFlg9
         )
         {
             this.descriptor = descriptor;
             this.animator = animator;
+            this.clothFlg9 = clothFlg9;
             return this;
         }
 
@@ -90,7 +93,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamCloth DestroyObjects(bool clothFlg9)
+        public IllRirikaParamCloth DestroyObjects()
         {
             DestroyObj(descriptor.transform.Find("Bag"));
             DestroyObj(descriptor.transform.Find("Boots"));
@@ -177,16 +180,20 @@ namespace jp.illusive_isc.RirikaOptimizer
             if (clothFlg6)
             {
                 DestroyObj(descriptor.transform.Find("Cloth"));
-                DestroyObj(descriptor.transform.Find("Armature/Hips/Spine/Z_Skirt_root"));
+                if (clothFlg1)
+                    DestroyObj(descriptor.transform.Find("Armature/Hips/Spine/Z_Skirt_root"));
                 DestroyObj(
                     descriptor.transform.Find("Armature/Hips/Spine/Chest/cloth1_chestribbon")
                 );
-                DestroyObj(
-                    descriptor.transform.Find("Armature/Hips/Spine/Chest/sholder_L/Z_frills_L")
-                );
-                DestroyObj(
-                    descriptor.transform.Find("Armature/Hips/Spine/Chest/sholder_R/Z_frills_R")
-                );
+                if (clothFlg2)
+                {
+                    DestroyObj(
+                        descriptor.transform.Find("Armature/Hips/Spine/Chest/sholder_L/Z_frills_L")
+                    );
+                    DestroyObj(
+                        descriptor.transform.Find("Armature/Hips/Spine/Chest/sholder_R/Z_frills_R")
+                    );
+                }
                 if (descriptor.transform.Find("body_b") is Transform body_b)
                 {
                     body_b

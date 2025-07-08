@@ -459,7 +459,7 @@ namespace jp.illusive_isc.RirikaOptimizer
                 IllRirikaParamCloth illRirikaParamCloth =
                     ScriptableObject.CreateInstance<IllRirikaParamCloth>();
                 illRirikaParamCloth
-                    .Initialize(descriptor, controller)
+                    .Initialize(descriptor, controller, ClothFlg9)
                     .DeleteFxBT()
                     .DeleteParam()
                     .DeleteVRCExpressions(menu, param)
@@ -475,7 +475,7 @@ namespace jp.illusive_isc.RirikaOptimizer
                     );
 
                 if (ClothFlg)
-                    illRirikaParamCloth.DestroyObjects(ClothFlg9);
+                    illRirikaParamCloth.DestroyObjects();
                 if (ClothFlg10)
                 {
                     var prefab = AssetDatabase.LoadAssetAtPath<Object>(
@@ -520,7 +520,7 @@ namespace jp.illusive_isc.RirikaOptimizer
                 IllRirikaParamHair illRirikaParamHair =
                     ScriptableObject.CreateInstance<IllRirikaParamHair>();
                 illRirikaParamHair
-                    .Initialize(descriptor, controller)
+                    .Initialize(descriptor, controller, AccessoryFlg1)
                     .DeleteFx()
                     .DeleteFxBT()
                     .DeleteParam()

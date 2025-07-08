@@ -207,12 +207,12 @@ namespace jp.illusive_isc.RirikaOptimizer
             EditorGUILayout.PropertyField(ClothFlg6, new GUIContent("  ├ 服削除"));
             EditorGUILayout.PropertyField(ClothFlg7, new GUIContent("  ├ ニーソックス削除"));
             EditorGUILayout.PropertyField(ClothFlg8, new GUIContent("  ├ 靴削除"));
+            EditorGUILayout.PropertyField(ClothFlg10, new GUIContent("  ├ 差分衣装追加"));
             EditorGUILayout.PropertyField(ClothFlg, new GUIContent("  └ デフォ衣装すべて削除"));
             if (!ClothFlg.boolValue)
             {
                 GUI.enabled = false;
                 ClothFlg9.boolValue = false;
-                ClothFlg10.boolValue = false;
             }
             else
             {
@@ -226,7 +226,6 @@ namespace jp.illusive_isc.RirikaOptimizer
                 ClothFlg8.boolValue = true;
             }
 
-            EditorGUILayout.PropertyField(ClothFlg10, new GUIContent("      ├ 差分衣装に変更"));
             EditorGUILayout.PropertyField(ClothFlg9, new GUIContent("      └ 下着も削除"));
             GUI.enabled = true;
 

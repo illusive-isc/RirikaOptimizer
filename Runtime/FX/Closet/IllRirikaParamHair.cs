@@ -12,6 +12,7 @@ namespace jp.illusive_isc.RirikaOptimizer
     {
         VRCAvatarDescriptor descriptor;
         AnimatorController animator;
+        bool accessoryFlg;
         private static readonly List<string> MenuParameters = new()
         {
             "Object1",
@@ -26,11 +27,13 @@ namespace jp.illusive_isc.RirikaOptimizer
 
         public IllRirikaParamHair Initialize(
             VRCAvatarDescriptor descriptor,
-            AnimatorController animator
+            AnimatorController animator,
+            bool accessoryFlg
         )
         {
             this.descriptor = descriptor;
             this.animator = animator;
+            this.accessoryFlg = accessoryFlg;
             return this;
         }
 
@@ -105,7 +108,38 @@ namespace jp.illusive_isc.RirikaOptimizer
             DestroyObj(descriptor.transform.Find("hair_bob"));
             DestroyObj(descriptor.transform.Find("hair_main"));
             DestroyObj(descriptor.transform.Find("Advanced/Hair rotation"));
-            DestroyObj(descriptor.transform.Find("Armature/Hips/Spine/Chest/Neck/Head/Hair_root"));
+            if (accessoryFlg)
+                DestroyObj(
+                    descriptor.transform.Find("Armature/Hips/Spine/Chest/Neck/Head/Hair_root")
+                );
+            else
+            {
+                DestroyObj(
+                    descriptor.transform.Find(
+                        "Armature/Hips/Spine/Chest/Neck/Head/Hair_root/bob_root"
+                    )
+                );
+                DestroyObj(
+                    descriptor.transform.Find(
+                        "Armature/Hips/Spine/Chest/Neck/Head/Hair_root/front_root"
+                    )
+                );
+                DestroyObj(
+                    descriptor.transform.Find(
+                        "Armature/Hips/Spine/Chest/Neck/Head/Hair_root/long_root"
+                    )
+                );
+                DestroyObj(
+                    descriptor.transform.Find(
+                        "Armature/Hips/Spine/Chest/Neck/Head/Hair_root/twintail_root"
+                    )
+                );
+                DestroyObj(
+                    descriptor.transform.Find(
+                        "Armature/Hips/Spine/Chest/Neck/Head/Hair_root/side_hair_R/"
+                    )
+                );
+            }
             return this;
         }
     }
