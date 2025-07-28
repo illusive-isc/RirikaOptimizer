@@ -184,6 +184,7 @@ namespace jp.illusive_isc.RirikaOptimizer
                     colorFlg1.boolValue = false;
                 }
             }
+            GUI.enabled = true;
             EditorGUILayout.PropertyField(ClothFlg0, new GUIContent("衣装メニューのみ削除"));
             if (!ClothFlg0.boolValue)
             {
