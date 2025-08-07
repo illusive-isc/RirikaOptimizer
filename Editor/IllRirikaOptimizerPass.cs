@@ -8,7 +8,7 @@ namespace jp.illusive_isc.RirikaOptimizer
         protected override void Execute(BuildContext context)
         {
             foreach (
-                IllRirikaOptimizer IllRirikaOptimizer in context.AvatarRootObject.transform.GetComponents<IllRirikaOptimizer>()
+                IllRirikaOptimizer IllRirikaOptimizer in context.AvatarRootObject.GetComponentsInChildren<IllRirikaOptimizer>()
             )
             {
                 Object.DestroyImmediate(IllRirikaOptimizer.gameObject);
