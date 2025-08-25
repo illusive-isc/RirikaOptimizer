@@ -40,6 +40,7 @@ namespace jp.illusive_isc.RirikaOptimizer
         SerializedProperty HairFlg7;
         SerializedProperty HairFlg8;
         SerializedProperty HairFlg;
+        SerializedProperty petScale;
         SerializedProperty petFlg;
         SerializedProperty TPSFlg;
         SerializedProperty ClairvoyanceFlg;
@@ -111,6 +112,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             HairFlg7 = serializedObject.FindProperty("HairFlg7");
             HairFlg8 = serializedObject.FindProperty("HairFlg8");
             HairFlg = serializedObject.FindProperty("HairFlg");
+            petScale = serializedObject.FindProperty("petScale");
             petFlg = serializedObject.FindProperty("petFlg");
             TPSFlg = serializedObject.FindProperty("TPSFlg");
             ClairvoyanceFlg = serializedObject.FindProperty("ClairvoyanceFlg");
@@ -368,6 +370,8 @@ namespace jp.illusive_isc.RirikaOptimizer
                 IKUSIA_emote,
                 new GUIContent("IKUSIA_emoteをメニューのみ削除")
             );
+            if (!petFlg.boolValue)
+                EditorGUILayout.PropertyField(petScale, new GUIContent("Pet大きさ変更(試作機能)"));
             // Execute ボタンの追加
             if (GUILayout.Button("Execute"))
             {

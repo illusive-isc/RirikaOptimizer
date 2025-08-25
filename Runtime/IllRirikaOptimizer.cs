@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using VRC.Dynamics;
 using VRC.SDK3.Avatars.Components;
 using VRC.SDK3.Avatars.ScriptableObjects;
 using VRC.SDKBase;
@@ -106,6 +107,9 @@ namespace jp.illusive_isc.RirikaOptimizer
 
         [SerializeField]
         private bool HairFlg = false;
+
+        [SerializeField]
+        private float petScale = 1.0f;
 
         [SerializeField]
         private bool petFlg = false;
@@ -624,6 +628,20 @@ namespace jp.illusive_isc.RirikaOptimizer
                     .DeleteParam()
                     .DeleteVRCExpressions(menu, param)
                     .DestroyObj();
+            }
+            else if (petScale != 1.0f)
+            {
+                if (
+                    descriptor.transform.Find("Advanced/Pet/World/Model/ririka_pet/Root")
+                    is Transform pet
+                )
+                {
+                    pet.localScale = new Vector3(petScale, petScale, petScale);
+                }
+                if (descriptor.transform.Find("Advanced/Pet/World/Grab/Grab1") is Transform grab)
+                {
+                    grab.gameObject.GetComponent<VRCPhysBoneBase>().radius = 0.04f * petScale;
+                }
             }
             if (TPSFlg)
             {
