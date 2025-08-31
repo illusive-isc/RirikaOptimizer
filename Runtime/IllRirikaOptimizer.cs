@@ -1087,7 +1087,36 @@ namespace jp.illusive_isc.RirikaOptimizer
                     .gameObject.GetComponent<SkinnedMeshRenderer>()
                     .SetBlendShapeWeight(7, heelFlg2 ? 100 : 0);
             }
+            var assetGuids = AssetDatabase.FindAssets(
+                "t:VRCExpressionsMenu",
+                new[] { pathDir + "Menu" }
+            );
 
+            Dictionary<string, VRCExpressionsMenu> menus = new();
+            foreach (var guid in assetGuids)
+            {
+                menus.Add(
+                    guid,
+                    AssetDatabase.LoadAssetAtPath<VRCExpressionsMenu>(
+                        AssetDatabase.GUIDToAssetPath(guid)
+                    )
+                );
+            }
+            foreach (var menuItem in menus)
+            {
+                var delFlg = true;
+                if (menuItem.Value.controls.Any(p => p.parameter.name == ""))
+                    continue;
+                foreach (var control in menuItem.Value.controls)
+                    if (!string.IsNullOrEmpty(control.parameter.name))
+                        if (param.parameters.Any(p => p.name == control.parameter.name))
+                        {
+                            delFlg = false;
+                            break;
+                        }
+                if (delFlg)
+                    AssetDatabase.DeleteAsset(AssetDatabase.GUIDToAssetPath(menuItem.Key));
+            }
             EditorUtility.SetDirty(controller);
             MarkAllMenusDirty(menu);
             EditorUtility.SetDirty(param);
