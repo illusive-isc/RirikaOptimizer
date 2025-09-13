@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using VRC.Dynamics;
 using VRC.SDK3.Avatars.Components;
 using VRC.SDK3.Avatars.ScriptableObjects;
 #if UNITY_EDITOR
@@ -304,7 +305,6 @@ namespace jp.illusive_isc.RirikaOptimizer
                 {
                     if (state.state.motion is BlendTree blendTree)
                     {
-
                         blendTree.children = blendTree
                             .children.Where(c => !(c.motion.name == "FaceLock"))
                             .ToArray();
@@ -364,6 +364,13 @@ namespace jp.illusive_isc.RirikaOptimizer
             DestroyObj(descriptor.transform.Find("Advanced/Gimmick2/5"));
             DestroyObj(descriptor.transform.Find("Advanced/Gimmick2/6"));
             DestroyObj(descriptor.transform.Find("Advanced/Gimmick2/7"));
+
+            var pbs = descriptor
+                .transform.Find("Armature/Hips/Upperleg_L/Z_leg acce/Z_Leg_acce")
+                .GetComponents<VRCPhysBoneBase>();
+
+            if (pbs.Length > 1)
+                DestroyComponent(pbs[1]);
 
             return this;
         }
