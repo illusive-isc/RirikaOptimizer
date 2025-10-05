@@ -7,7 +7,8 @@
         "nadena.dev.modular-avatar.core",
         "nadena.dev.ndmf",
         "nadena.dev.ndmf.runtime",
-        "com.anatawa12.avatar-optimizer.internal.prefab-safe-set.editor"
+        "com.anatawa12.avatar-optimizer.internal.prefab-safe-set.editor",
+        "jp.illusive_isc.splitmesh4bonegroupseditor"
     ],
     "includePlatforms": [
         "Editor"
@@ -27,6 +28,11 @@
             "name": "com.anatawa12.avatar-optimizer",
             "expression": "",
             "define": "AVATAR_OPTIMIZER_FOUND"
+        },
+        {
+            "name": "jp.illusive-isc.splitmesh4bonegroups",
+            "expression": "",
+            "define": "SPLIT_MESH_FOUND"
         }
     ],
     "noEngineReferences": false
