@@ -22,16 +22,15 @@ namespace jp.illusive_isc.RirikaOptimizer
         public IllRirikaParamFaceContact Initialize(
             VRCAvatarDescriptor descriptor,
             AnimatorController animator,
-            bool kamitukiFlg,
-            bool nadeFlg,
-            bool blinkFlg
+
+            IllRirikaOptimizer optimizer
         )
         {
             this.descriptor = descriptor;
             this.animator = animator;
-            this.kamitukiFlg = kamitukiFlg;
-            this.nadeFlg = nadeFlg;
-            this.blinkFlg = blinkFlg;
+            kamitukiFlg = optimizer.kamitukiFlg;
+            nadeFlg = optimizer.nadeFlg;
+            blinkFlg = optimizer.blinkFlg;
             return this;
         }
 

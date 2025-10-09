@@ -14,6 +14,11 @@ namespace jp.illusive_isc.RirikaOptimizer
     {
         VRCAvatarDescriptor descriptor;
         AnimatorController animator;
+        private bool AccessoryFlg1;
+        private bool AccessoryFlg2;
+        private bool AccessoryFlg3;
+        private bool AccessoryFlg4;
+
         private static readonly List<string> MenuParameters = new()
         {
             "cloth1",
@@ -24,19 +29,24 @@ namespace jp.illusive_isc.RirikaOptimizer
 
         public IllRirikaParamAccessory Initialize(
             VRCAvatarDescriptor descriptor,
-            AnimatorController animator
+            AnimatorController animator,
+            IllRirikaOptimizer optimizer
         )
         {
             this.descriptor = descriptor;
             this.animator = animator;
+            AccessoryFlg1 = optimizer.AccessoryFlg1;
+            AccessoryFlg2 = optimizer.AccessoryFlg2;
+            AccessoryFlg3 = optimizer.AccessoryFlg3;
+            AccessoryFlg4 = optimizer.AccessoryFlg4;
             return this;
         }
 
-        public IllRirikaParamAccessory DeleteFxBT()
+        public void DeleteFxBT()
         {
             var targetLayer = animator.layers.FirstOrDefault(l => l.name == "MainCtrlTree");
             if (targetLayer == null)
-                return this;
+                return;
 
             foreach (var state in targetLayer.stateMachine.states)
             {
@@ -54,22 +64,16 @@ namespace jp.illusive_isc.RirikaOptimizer
                         .children.Where(c => CheckBT(c.motion, MenuParameters))
                         .ToArray();
             }
-
-            return this;
         }
 
-        public IllRirikaParamAccessory DeleteParam()
+        public void DeleteParam()
         {
             animator.parameters = animator
                 .parameters.Where(parameter => !MenuParameters.Contains(parameter.name))
                 .ToArray();
-            return this;
         }
 
-        public IllRirikaParamAccessory DeleteVRCExpressions(
-            VRCExpressionsMenu menu,
-            VRCExpressionParameters param
-        )
+        public void DeleteVRCExpressions(VRCExpressionsMenu menu, VRCExpressionParameters param)
         {
             param.parameters = param
                 .parameters.Where(parameter => !MenuParameters.Contains(parameter.name))
@@ -93,15 +97,9 @@ namespace jp.illusive_isc.RirikaOptimizer
                     break;
                 }
             }
-            return this;
         }
 
-        public IllRirikaParamAccessory DestroyObj(
-            bool accessoryFlg1,
-            bool accessoryFlg2,
-            bool accessoryFlg3,
-            bool accessoryFlg4
-        )
+        public void ChangeObj()
         {
             // DestroyObj(descriptor.transform.Find("Armature/Hips/Spine/Chest/Neck/Head/acce_wing_transform"));
             // DestroyObj(descriptor.transform.Find("Armature/Hips/Spine/Chest/Neck/Head/earring_root"));
@@ -109,24 +107,23 @@ namespace jp.illusive_isc.RirikaOptimizer
             {
                 accessoryObj1
                     .gameObject.GetComponent<SkinnedMeshRenderer>()
-                    .SetBlendShapeWeight(3, accessoryFlg1 ? 0 : 100);
+                    .SetBlendShapeWeight(3, AccessoryFlg1 ? 0 : 100);
                 accessoryObj1
                     .gameObject.GetComponent<SkinnedMeshRenderer>()
-                    .SetBlendShapeWeight(4, accessoryFlg1 ? 0 : 100);
+                    .SetBlendShapeWeight(4, AccessoryFlg1 ? 0 : 100);
             }
             if (descriptor.transform.Find("cloth_Accessories") is Transform accessoryObj2)
                 accessoryObj2
                     .gameObject.GetComponent<SkinnedMeshRenderer>()
-                    .SetBlendShapeWeight(1, accessoryFlg2 ? 0 : 100);
+                    .SetBlendShapeWeight(1, AccessoryFlg2 ? 0 : 100);
             if (descriptor.transform.Find("cloth_Accessories") is Transform accessoryObj3)
                 accessoryObj3
                     .gameObject.GetComponent<SkinnedMeshRenderer>()
-                    .SetBlendShapeWeight(6, accessoryFlg3 ? 0 : 100);
+                    .SetBlendShapeWeight(6, AccessoryFlg3 ? 0 : 100);
             if (descriptor.transform.Find("cloth_Accessories") is Transform accessoryObj7)
                 accessoryObj7
                     .gameObject.GetComponent<SkinnedMeshRenderer>()
-                    .SetBlendShapeWeight(7, accessoryFlg4 ? 0 : 100);
-            return this;
+                    .SetBlendShapeWeight(7, AccessoryFlg4 ? 0 : 100);
         }
     }
 }

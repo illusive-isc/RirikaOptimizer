@@ -91,7 +91,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamClairvoyance DestroyObj()
+        public IllRirikaParamClairvoyance ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/clairvoyance"));
             return this;

@@ -145,7 +145,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamCollider DestroyObj()
+        public IllRirikaParamCollider ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/Gimmick1"));
             return this;

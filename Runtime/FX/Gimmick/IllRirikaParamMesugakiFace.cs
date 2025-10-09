@@ -132,11 +132,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamMesugakiFace DestroyObj()
-        {
-            DestroyObj(descriptor.transform.Find("Advanced/mesugakiparticle"));
-            return this;
-        }
+
     }
 }
 #endif

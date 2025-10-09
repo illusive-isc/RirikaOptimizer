@@ -116,7 +116,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamPet DestroyObj()
+        public IllRirikaParamPet ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/Pet"));
             DestroyObj(descriptor.transform.Find("Advanced/pet position Particle"));

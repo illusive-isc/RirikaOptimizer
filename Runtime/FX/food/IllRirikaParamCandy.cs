@@ -91,7 +91,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamCandy DestroyObj()
+        public IllRirikaParamCandy ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/food/candy"));
             return this;

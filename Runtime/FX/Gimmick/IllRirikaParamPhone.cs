@@ -104,7 +104,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamPhone DestroyObj()
+        public IllRirikaParamPhone ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/phone"));
             return this;

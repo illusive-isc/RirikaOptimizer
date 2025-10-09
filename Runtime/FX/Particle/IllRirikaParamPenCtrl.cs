@@ -14,6 +14,7 @@ namespace jp.illusive_isc.RirikaOptimizer
         HashSet<string> paramList = new();
         VRCAvatarDescriptor descriptor;
         AnimatorController animator;
+        bool HeartGunFlg;
 
         private static readonly List<string> Layers = new() { "PenCtrl_R", "PenCtrl_L" };
 
@@ -28,15 +29,18 @@ namespace jp.illusive_isc.RirikaOptimizer
 
         public IllRirikaParamPenCtrl Initialize(
             VRCAvatarDescriptor descriptor,
-            AnimatorController animator
+            AnimatorController animator,
+
+            IllRirikaOptimizer optimizer
         )
         {
             this.descriptor = descriptor;
             this.animator = animator;
+            HeartGunFlg = optimizer.HeartGunFlg;
             return this;
         }
 
-        public IllRirikaParamPenCtrl DeleteFx(bool HeartGunFlg)
+        public IllRirikaParamPenCtrl DeleteFx()
         {
             if (!HeartGunFlg)
             {
@@ -172,7 +176,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamPenCtrl DestroyObj()
+        public IllRirikaParamPenCtrl ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/Particle/7"));
             return this;

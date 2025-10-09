@@ -100,7 +100,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamDoughnut DestroyObj()
+        public IllRirikaParamDoughnut ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/food/doughnut"));
             DestroyObj(descriptor.transform.Find("Advanced/food/doughnut_contact"));

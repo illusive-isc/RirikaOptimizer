@@ -91,7 +91,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamTPS DestroyObj()
+        public IllRirikaParamTPS ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/TPS"));
             return this;

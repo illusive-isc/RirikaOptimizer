@@ -91,7 +91,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamNeon DestroyObj()
+        public IllRirikaParamNeon ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/neon"));
             return this;

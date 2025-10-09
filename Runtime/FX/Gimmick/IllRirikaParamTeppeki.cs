@@ -95,7 +95,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamTeppeki DestroyObj()
+        public IllRirikaParamTeppeki ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/teppeki"));
             return this;

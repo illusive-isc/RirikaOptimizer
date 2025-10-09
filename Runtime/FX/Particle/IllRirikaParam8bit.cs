@@ -81,7 +81,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParam8bit DestroyObj()
+        public IllRirikaParam8bit ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/Particle/5"));
             return this;

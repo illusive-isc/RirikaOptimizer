@@ -13,16 +13,20 @@ namespace jp.illusive_isc.RirikaOptimizer
     {
         VRCAvatarDescriptor descriptor;
         AnimatorController animator;
+        bool BreastSizeFlg2;
 
         private static readonly List<string> MenuParameters = new() { "BreastSize" };
 
         public IllRirikaParamBreastSize Initialize(
             VRCAvatarDescriptor descriptor,
-            AnimatorController animator
+            AnimatorController animator,
+            IllRirikaOptimizer optimizer
+
         )
         {
             this.descriptor = descriptor;
             this.animator = animator;
+            BreastSizeFlg2 = optimizer.BreastSizeFlg2;
             return this;
         }
 
@@ -81,7 +85,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamBreastSize ChangeObj(bool BreastSizeFlg2)
+        public IllRirikaParamBreastSize ChangeObj()
         {
             if (descriptor.transform.Find("Bra") is Transform BraObj)
             {

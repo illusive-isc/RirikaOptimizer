@@ -350,7 +350,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamDef DestroyObj()
+        public IllRirikaParamDef ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/Particle/2"));
             DestroyObj(descriptor.transform.Find("Advanced/Particle/3"));

@@ -145,7 +145,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamHeartGun DestroyObj()
+        public IllRirikaParamHeartGun ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/HeartGunR"));
             DestroyObj(descriptor.transform.Find("Advanced/HeartGunL"));

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using VRC.Dynamics;
+using UnityEditor;
+using UnityEngine;
 using VRC.SDK3.Avatars.Components;
 using VRC.SDK3.Avatars.ScriptableObjects;
 #if UNITY_EDITOR
@@ -12,7 +13,17 @@ namespace jp.illusive_isc.RirikaOptimizer
     {
         VRCAvatarDescriptor descriptor;
         AnimatorController animator;
-        bool accessoryFlg;
+        bool AccessoryFlg1;
+        bool HairFlg1;
+        bool HairFlg2;
+        bool HairFlg3;
+        bool HairFlg4;
+        bool HairFlg5;
+        bool HairFlg6;
+        bool HairFlg7;
+        bool HairFlg8;
+        bool HairFlg;
+        bool colorFlg0;
         private static readonly List<string> MenuParameters = new()
         {
             "Object1",
@@ -28,12 +39,22 @@ namespace jp.illusive_isc.RirikaOptimizer
         public IllRirikaParamHair Initialize(
             VRCAvatarDescriptor descriptor,
             AnimatorController animator,
-            bool accessoryFlg
+            IllRirikaOptimizer optimizer
         )
         {
             this.descriptor = descriptor;
             this.animator = animator;
-            this.accessoryFlg = accessoryFlg;
+            AccessoryFlg1 = optimizer.AccessoryFlg1;
+            HairFlg1 = optimizer.HairFlg1;
+            HairFlg2 = optimizer.HairFlg2;
+            HairFlg3 = optimizer.HairFlg3;
+            HairFlg4 = optimizer.HairFlg4;
+            HairFlg5 = optimizer.HairFlg5;
+            HairFlg6 = optimizer.HairFlg6;
+            HairFlg7 = optimizer.HairFlg7;
+            HairFlg8 = optimizer.HairFlg8;
+            HairFlg = optimizer.HairFlg;
+            colorFlg0 = optimizer.colorFlg0;
             return this;
         }
 
@@ -102,13 +123,99 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamHair DestroyObj()
+        public void ChangeObj()
         {
+            if (descriptor.transform.Find("hair_main") is Transform hair_main)
+            {
+                hair_main
+                    .gameObject.GetComponent<SkinnedMeshRenderer>()
+                    .SetBlendShapeWeight(4, HairFlg1 ? 100 : 0);
+                hair_main
+                    .gameObject.GetComponent<SkinnedMeshRenderer>()
+                    .SetBlendShapeWeight(6, HairFlg2 ? 0 : 100);
+                hair_main
+                    .gameObject.GetComponent<SkinnedMeshRenderer>()
+                    .SetBlendShapeWeight(15, HairFlg7 ? 100 : 0);
+            }
+            if (descriptor.transform.Find("hair_bob") is Transform hair_bob)
+            {
+                hair_bob.gameObject.SetActive(HairFlg5);
+                hair_bob
+                    .gameObject.GetComponent<SkinnedMeshRenderer>()
+                    .SetBlendShapeWeight(0, HairFlg3 ? 0 : 100);
+                hair_bob
+                    .gameObject.GetComponent<SkinnedMeshRenderer>()
+                    .SetBlendShapeWeight(1, HairFlg6 ? 100 : 0);
+            }
+            if (descriptor.transform.Find("hair_back_long") is Transform hair_back_long)
+            {
+                hair_back_long.gameObject.SetActive(HairFlg4);
+                hair_back_long
+                    .gameObject.GetComponent<SkinnedMeshRenderer>()
+                    .SetBlendShapeWeight(0, HairFlg3 ? 0 : 100);
+            }
+            if (descriptor.transform.Find("cloth_Accessories") is Transform cloth_Accessories)
+            {
+                if (AccessoryFlg1)
+                {
+                    cloth_Accessories
+                        .gameObject.GetComponent<SkinnedMeshRenderer>()
+                        .SetBlendShapeWeight(3, HairFlg2 ? 0 : 100);
+                    cloth_Accessories
+                        .gameObject.GetComponent<SkinnedMeshRenderer>()
+                        .SetBlendShapeWeight(4, HairFlg2 ? 0 : 100);
+                }
+                cloth_Accessories
+                    .gameObject.GetComponent<SkinnedMeshRenderer>()
+                    .SetBlendShapeWeight(2, HairFlg7 || HairFlg8 || HairFlg ? 100 : 0);
+            }
+
+            if (!HairFlg && HairFlg8)
+            {
+                var prefab = AssetDatabase.LoadAssetAtPath<Object>(
+                    AssetDatabase.GUIDToAssetPath("b0fb802c479d39448bd81534f28ae96c")
+                );
+                bool alreadyExists = false;
+                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                foreach (Transform child in descriptor.transform)
+                    if (child.name == prefab.name)
+                    {
+                        alreadyExists = true;
+                        DestroyImmediate(instance);
+                        instance = child.gameObject;
+                        break;
+                    }
+                if (!alreadyExists)
+                {
+                    if (instance != null)
+                    {
+                        instance.transform.SetParent(descriptor.transform, false);
+
+                        // Undo.RegisterCreatedObjectUndo(instance, "Instantiate Asset");
+                    }
+                }
+                var twin = instance.transform.Find("Backhair_twin.003");
+                var renderer = twin.GetComponent<SkinnedMeshRenderer>();
+
+                var materials = renderer.sharedMaterials;
+
+                materials[0] = colorFlg0
+                    ? AssetDatabase.LoadAssetAtPath<Material>(
+                        AssetDatabase.GUIDToAssetPath("98b8fd92f51ca3643bf67a12ed2c7333")
+                    )
+                    : AssetDatabase.LoadAssetAtPath<Material>(
+                        AssetDatabase.GUIDToAssetPath("47af70148badc2b4bb17d0632669cd67")
+                    );
+
+                renderer.sharedMaterials = materials;
+            }
+            if (!HairFlg)
+                return;
             DestroyObj(descriptor.transform.Find("hair_back_long"));
             DestroyObj(descriptor.transform.Find("hair_bob"));
             DestroyObj(descriptor.transform.Find("hair_main"));
             DestroyObj(descriptor.transform.Find("Advanced/Hair rotation"));
-            if (accessoryFlg)
+            if (AccessoryFlg1)
                 DestroyObj(
                     descriptor.transform.Find("Armature/Hips/Spine/Chest/Neck/Head/Hair_root")
                 );
@@ -140,7 +247,6 @@ namespace jp.illusive_isc.RirikaOptimizer
                     )
                 );
             }
-            return this;
         }
     }
 }

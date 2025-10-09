@@ -91,7 +91,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamNoisepanel DestroyObj()
+        public IllRirikaParamNoisepanel ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/noise panel"));
             return this;

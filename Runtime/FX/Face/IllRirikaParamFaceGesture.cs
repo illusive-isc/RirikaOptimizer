@@ -32,16 +32,14 @@ namespace jp.illusive_isc.RirikaOptimizer
         public IllRirikaParamFaceGesture Initialize(
             VRCAvatarDescriptor descriptor,
             AnimatorController animator,
-            bool FaceGestureFlg,
-            bool FaceLockFlg,
-            bool FaceValFlg
+            IllRirikaOptimizer optimizer
         )
         {
             this.descriptor = descriptor;
             this.animator = animator;
-            this.FaceGestureFlg = FaceGestureFlg;
-            this.FaceLockFlg = FaceLockFlg;
-            this.FaceValFlg = FaceValFlg;
+            FaceGestureFlg = optimizer.FaceGestureFlg;
+            FaceLockFlg = optimizer.FaceLockFlg;
+            FaceValFlg = optimizer.FaceValFlg;
             return this;
         }
 

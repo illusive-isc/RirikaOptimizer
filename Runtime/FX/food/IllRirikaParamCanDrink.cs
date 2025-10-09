@@ -91,7 +91,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamCanDrink DestroyObj()
+        public IllRirikaParamCanDrink ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/food/can drink Hand"));
             return this;

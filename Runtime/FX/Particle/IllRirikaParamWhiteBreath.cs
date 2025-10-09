@@ -82,7 +82,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamWhiteBreath DestroyObj()
+        public IllRirikaParamWhiteBreath ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/Particle/1"));
             return this;

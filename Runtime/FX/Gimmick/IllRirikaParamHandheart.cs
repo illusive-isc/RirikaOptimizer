@@ -96,7 +96,7 @@ namespace jp.illusive_isc.RirikaOptimizer
             return this;
         }
 
-        public IllRirikaParamHandheart DestroyObj()
+        public IllRirikaParamHandheart ChangeObj()
         {
             DestroyObj(descriptor.transform.Find("Advanced/hand heart"));
             return this;
